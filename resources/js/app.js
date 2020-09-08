@@ -14,7 +14,7 @@ import VueNoty from "vuejs-noty";
 Vue.use(VueNoty);
 
 const VueProgressBarOptions = {
-    color: "#96fab6",
+    color: "#0277bd",
     failedColor: "#874b4b",
     thickness: "5px",
     transition: {
@@ -45,6 +45,7 @@ import App from "./views/App";
 import Home from "./views/Home";
 import About from "./views/About";
 import UserIndex from "./views/UserIndex";
+import NotFound from "./components/NotFound";
 
 // Vue.component(
 //     "example-component",
@@ -72,6 +73,10 @@ const routes = [
         path: "/users",
         name: "users.index",
         component: UserIndex
+    },
+    {
+        path: '*',
+        component: NotFound
     }
 ];
 
@@ -82,6 +87,6 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: "#app",
-    components: { App },
+    components: {App},
     router
 });
