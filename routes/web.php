@@ -1,5 +1,8 @@
 <?php
 
+use App\Events\TaskEvent;
+use App\Notifications\TestNotification;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-
 Auth::routes();
 
+Route::get('event', function () {
+    event(new TaskEvent('Hello From Laravel Broadcasting'));
+    $user = User::findOrFail(51);
+    $user->notify(new TestNotification("Hello from broadcasting user notification!"));
+});
+
+Route::view('listen', 'listenBroadcast');
+
 Route::get('/{any}', 'SpaController@index')->where('any', '.*');
-
-
-

@@ -88,5 +88,16 @@ const router = new VueRouter({
 const app = new Vue({
     el: "#app",
     components: {App},
-    router
+    router,
+    created() {
+        Echo.private('testChannel')
+    .listen('TaskEvent', (e) => {
+        console.log(e);
+    });
+
+        Echo.private('App.User.1')
+    .notification((notification) => {
+        console.log(notification);
+    });
+    },
 });
