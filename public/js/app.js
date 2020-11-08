@@ -63252,11 +63252,8 @@ var app = new Vue({
   },
   router: router,
   created: function created() {
-    Echo["private"]('testChannel').listen('TaskEvent', function (e) {
+    Echo.channel('testChannel').listen('TaskEvent', function (e) {
       console.log(e);
-    });
-    Echo["private"]('App.User.1').notification(function (notification) {
-      console.log(notification);
     });
   }
 });
@@ -63305,9 +63302,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "b9cee87bb8f3970a47e3",
-  cluster: "ap2",
-  forceTLS: true
+  key: "anyKey",
+  wsHost: window.location.hostname,
+  wsPort: 6001,
+  forceTLS: false,
+  disableStats: true
 });
 
 /***/ }),

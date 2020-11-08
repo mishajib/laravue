@@ -90,14 +90,9 @@ const app = new Vue({
     components: {App},
     router,
     created() {
-        Echo.private('testChannel')
-    .listen('TaskEvent', (e) => {
-        console.log(e);
-    });
-
-        Echo.private('App.User.1')
-    .notification((notification) => {
-        console.log(notification);
-    });
+        Echo.channel('testChannel')
+            .listen('TaskEvent', (e) => {
+                console.log(e);
+            });
     },
 });

@@ -1,8 +1,6 @@
 <?php
 
 use App\Events\TaskEvent;
-use App\Notifications\TestNotification;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +19,7 @@ Auth::routes();
 
 Route::get('event', function () {
     event(new TaskEvent('Hello From Laravel Broadcasting'));
-    $user = User::findOrFail(51);
-    $user->notify(new TestNotification("Hello from broadcasting user notification!"));
+    return 'ok';
 });
 
 Route::view('listen', 'listenBroadcast');
